@@ -14,26 +14,4 @@
             </div>
         </div>
     {% endfor %}
-    <div class="pagination">
-        <ul>
-            {% if page > 1 %}
-                <li><a href="/page{{ page|add:"-1" }}">← Позже</a></li>
-            {% endif %}
-            {% if page != pages|length %}
-                <li><a href="/page{{ page|add:"1" }}">Раньше →</a></li>
-            {% endif %}
-        </ul>
-    </div>
-    <div class="pagination">
-        <ul>
-
-            {% for i in pages %}
-                {% if page == i %}
-                    <li class="active"><a href="/page{{ i }}">{{ i }}</a>
-                {% else %}
-                    <li><a href="/page{{ i }}">{{ i }}</a></li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </div>
 {% endblock %}

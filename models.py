@@ -22,7 +22,7 @@ class BlogPost(db.Model):
     author_name = db.StringProperty()
     published = db.BooleanProperty(default=True)
     rating = db.IntegerProperty()
-    comments_count = db.IntegerProperty(default=0)
+    #comments_count = db.IntegerProperty(default=0)
 
 class Comment(db.Model):
     body = db.StringProperty(multiline=True)

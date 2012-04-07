@@ -43,22 +43,10 @@ class BaseHandler(webapp.RequestHandler):
 
 class MainHandler(BaseHandler):
     def get(self,page):
-        if page:
-            page = int(page)
-            offset = (page-1)*10
-        else:
-            offset = 0
-            page = 1
-        num_pages, ost = divmod(BlogPost.all().count(),10)
-        if ost>0:
-            num_pages += 1
-        posts = BlogPost.all().order('-pub_date').fetch(limit=10,offset=offset)
+        posts = BlogPost.all().order('-pub_date').fetch(limit=10)
         self.templ_vals.update({
             'url':users.create_logout_url("/"),
             'posts':posts,
-            'active_main':True,
-            'page':page,
-            'pages':range(1,num_pages+1)
         })
         self.render_to_response('index.html',self.templ_vals)
 
@@ -126,7 +114,7 @@ class AddCommentHandler(BaseHandler):
             author_name = self.getCurrentUserName()
         )
         c.put()
-        post.comments_count += 1
+        #post.comments_count += 1
         post.put()
         templ_vals = {
             'comment': c
