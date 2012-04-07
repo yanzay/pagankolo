@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{{ post.title }}</h2>
+    <div class="well">
+        {% autoescape off %}
+            {{ post.body }}
+        {% endautoescape %}
+    </div>
+    {{ post.author_name }}
+    <hr>
+    <h3>Комментарии</h3>
+    <div id="comments">
+    {% for comment in comments %}
+        <div class="comment">
+            <div>{{ comment.author_name }} - {{ comment.date|date:'d.m.Y G:i:s' }}</div>
+            <div>{{ comment.body }}</div>
+        </div>
+    {% endfor %}
+    </div>
+    <hr>
+    <h3>Добавить комментарий</h3>
+    <form action="/add_comment" method="post" id="add_comment">
+        <input type="hidden" value="{{ post.key.id }}" name="postid">
+        {% if unnamed %}
+            <label>Имя:<input type="text" name="name" placeholder="Вы еще не представились" class="span7"></label>
+        {% endif %}
+        <label><textarea id="body" name="body" class="span7" rows="4"></textarea></label>
+        <input type="submit" value="Отправить" class="btn-primary btn-large">
+    </form>
+    <script type="text/javascript">
+        // wait for the DOM to be loaded
+        options = {
+            beforeSubmit: validate,
+            success: addcomment
+        };
+        function addcomment(response){
+            $('#add_comment').resetForm();
+            $('#comments').append(response);
+            $('#comments').children().last().fadeIn('slow');
+        }
+        function validate(formData, jqForm, options){
+            var form = jqForm[0];
+            if(!form.body.value){
+                $('#body').wrap('<div class="control-group error" />');
+                $('<span class="help-inline">Введите комментарий</span>').insertAfter('#body');
+                return false;
+            }
+            return true;
+        }
+        $(document).ready(function() {
+            $('#add_comment').ajaxForm(options);
+        });
+
+        $('#body').focusin(function(){
+            $('.error').removeClass('error');
+            $('.help-inline').fadeOut('fast');
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <script type="text/javascript" src="/static/jquery.js"></script>
+    <script type="text/javascript" src="/static/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/static/jquery.form.js"></script>
+</head>
+<body>
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/">
+                PaganKolo
+            </a>
+            <ul class="nav">
+                <li{% if active_main %} class="active"{% endif %}>
+                    <a href="/">Главная</a>
+                </li>
+                <li{% if active_blogs %} class="active"{% endif %}><a href="/blogs">Блоги</a></li>
+                <li{% if active_people %} class="active"{% endif %}><a href="#">Люди</a></li>
+            </ul>
+            <form class="navbar-search">
+                <i class="icon-white icon-search add-on"></i>
+                <input type="text" class="input-medium search-query span2" placeholder="Поиск...">
+            </form>
+            <div class="span3 offset2">
+                <ul class="nav">
+                    {% if user %}
+                                <li><img src="/img?img_id={{ prof_id }}"></li>
+                        <li><a href="/profile">
+                                {% if user_name %}
+                                    {{ user_name }}
+                                {% else %}
+                                    Аноним
+                                {% endif %}
+                        </a>
+                        </li>
+                        <li>
+                            <a href="{{ logout_url }}">Выйти</a>
+                        </li>
+                    {% else %}
+                        <li><a href="{{ login_url }}">Войти</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span8">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="span4">
+            <ul class="nav nav-list well">
+                <li class="nav-header">
+                    Кабинет
+                </li>
+                <li>
+                    <a href="/add">
+                        <i class="icon-pencil"></i>
+                        Создать запись
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile">
+                        <i class="icon-user"></i>
+                        Профиль
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-question-sign"></i>
+                        Помощь
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Copyright &copy; Yanzay, 2012</p>
+    </div>
+</div>
+</body>
+</html>

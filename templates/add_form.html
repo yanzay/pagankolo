@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="/add" method="post" id="add_post">
+    {% if unnamed %}
+    <label>Имя:<input type="text" name="name" placeholder="Вы еще не представились" class="span7"></label>
+    {% endif %}
+    <label>Заголовок:<input name="title" type="text" placeholder="Название поста" class="span7"></label>
+    <label>Категория:<select name="category" class="span3">
+        {% for cat in categories %}
+        <option value="{{ cat.link }}">{{ cat.name }}</option>
+        {% endfor %}
+    </select></label>
+    <label>Текст:<textarea name="body" class="span7" rows="15"></textarea></label>
+    <input type="submit" value="Сохранить" class="btn-primary btn-large">
+</form>
+    <script type="text/javascript">
+        CKEDITOR.replace( 'body' );
+    </script>
+{% endblock %}

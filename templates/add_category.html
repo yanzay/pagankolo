@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="/admin" method="post" id="add_post">
+    <label>Название:<br><input type="text" name="name"></label>
+    <label>Машинное название:<br><input name="link" type="text"></label>
+    <input type="submit" value="Сохранить">
+</form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="/profile/edit" enctype="multipart/form-data" method="post">
+        <label>Имя:
+            <input name="name">
+        </label>
+        <label>Аватар:
+            <input name="avatar" type="file">
+        </label>
+        <input type="submit" value="Сохранить">
+    </form>
+{% endblock %}

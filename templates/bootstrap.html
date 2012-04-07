@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="/">
+                        PaganKolo
+                    </a>
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="/">Главная</a>
+                        </li>
+                        <li><a href="#">Блоги</a></li>
+                        <li><a href="#">Люди</a></li>
+                    </ul>
+                    <form class="navbar-search pull-left offset4">
+                        <input type="text" class="search-query" placeholder="Поиск...">
+                        <i class="icon-white icon-search add-on"></i>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span8">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="span4">
+            <ul class="nav nav-list well">
+                <li class="nav-header">
+                    Кабинет
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-pencil"></i>
+                        Создать запись
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-user"></i>
+                        Профиль
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-question-sign"></i>
+                        Помощь
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

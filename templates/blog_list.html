@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+        <ul>
+{% for blog in blogs %}
+<li><h2><a href="/blogs/{{ blog.link }}/">{{ blog.name }}</a></h2></li>
+{{ post.author_name }}
+{% endfor %}
+        </ul>
+{% endblock %}
